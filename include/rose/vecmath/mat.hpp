@@ -73,6 +73,22 @@ namespace rose {
         }};
       }
 
+      static Mat<TYPE, 4, 4> ortho(TYPE left, TYPE right, TYPE bottom, TYPE top,
+                                   TYPE near, TYPE far) noexcept {
+        TYPE rl = right + left;
+        TYPE tb = top + bottom;
+        TYPE nf = near + far;
+        TYPE irl = one / (right - left);
+        TYPE itb = one / (top - bottom);
+        TYPE inf = one / (near - far);
+        return {{
+          { irl + irl, 0,         0,         0  },
+          { 0,         itb + itb, 0,         0  },
+          { 0,         0,         inf + inf, 0  },
+          {-rl * irl, -tb * itb,  nf * inf,  one}
+        }};
+      }
+
     };
 
   }

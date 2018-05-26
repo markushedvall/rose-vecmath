@@ -101,3 +101,16 @@ TEST(Mat4x4, identity) {
 
   expect_float_mat_eq(mat, expected);
 }
+
+TEST(Mat4x4, ortho) {
+  auto mat = Mat4x4<float>::ortho(-1.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f);
+
+  Mat4x4<float> expected = {{
+    {1.0f, 0.0f, 0.0f, 0.0f},
+    {0.0f, 1.0f, 0.0f, 0.0f},
+    {0.0f, 0.0f, 1.0f, 0.0f},
+    {0.0f, 0.0f, 0.0f, 1.0f}
+  }};
+
+  expect_float_mat_eq(mat, expected);
+}
