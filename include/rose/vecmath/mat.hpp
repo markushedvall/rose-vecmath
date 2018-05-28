@@ -64,6 +64,24 @@ namespace rose {
         return col(index);
       }
 
+      const Mat<TYPE, 4, 4> operator*(const Mat<TYPE, 4, 4>& other) const {
+        Mat<TYPE, 4, 4> res;
+        for (int c = 0; c < 4; ++c) {
+          for (int r = 0; r < 4; ++r) {
+            res[c][r] = 0;
+            for (int k = 0; k < 4; ++k) {
+              res[c][r] += mat[k][r] * other[c][k];
+            }
+          }
+        }
+        return res;
+      }
+
+      Mat<TYPE, 4, 4>& operator*=(const Mat<TYPE, 4, 4>& other) {
+        *this = *this * other;
+        return *this;
+      }
+
       static Mat<TYPE, 4, 4> identity() noexcept {
         return {{
           {one, 0,   0,   0  },
