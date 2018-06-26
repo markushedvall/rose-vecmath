@@ -1,4 +1,4 @@
-# rose_vecmath
+# rose-vecmath
 
 A simple library for vector math with generic types.
 
