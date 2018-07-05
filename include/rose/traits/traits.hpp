@@ -1,8 +1,7 @@
 #ifndef ROSE_VECMATH_TRAITS_HPP
 #define ROSE_VECMATH_TRAITS_HPP
 
-#include <assert.h>
-#include <type_traits>
+#include <cassert>
 
 namespace rose {
   namespace traits {
