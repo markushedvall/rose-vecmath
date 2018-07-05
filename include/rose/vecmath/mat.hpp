@@ -2,6 +2,7 @@
 #define ROSE_VECMATH_MAT_HPP
 
 #include <cstddef>
+#include <cmath>
 
 #include "vec.hpp"
 #include "../traits/traits.hpp"
@@ -64,7 +65,8 @@ namespace rose {
         return col(index);
       }
 
-      const Mat<TYPE, 4, 4> operator*(const Mat<TYPE, 4, 4>& other) const {
+      const Mat<TYPE, 4, 4> operator*(const Mat<TYPE, 4, 4>& other)
+      const noexcept {
         Mat<TYPE, 4, 4> res;
         for (int c = 0; c < 4; ++c) {
           for (int r = 0; r < 4; ++r) {
@@ -77,9 +79,24 @@ namespace rose {
         return res;
       }
 
-      Mat<TYPE, 4, 4>& operator*=(const Mat<TYPE, 4, 4>& other) {
+      Mat<TYPE, 4, 4>& operator*=(const Mat<TYPE, 4, 4>& other) noexcept {
         *this = *this * other;
         return *this;
+      }
+
+      void rotate_x(float angle) noexcept {
+        auto rot = rotation_x(angle);
+        *this *= rot;
+      }
+
+      void rotate_y(float angle) noexcept {
+        auto rot = rotation_y(angle);
+        *this *= rot;
+      }
+
+      void rotate_z(float angle) noexcept {
+        auto rot = rotation_z(angle);
+        *this *= rot;
       }
 
       static Mat<TYPE, 4, 4> identity() noexcept {
@@ -104,6 +121,39 @@ namespace rose {
           { 0,         itb + itb, 0,         0  },
           { 0,         0,         inf + inf, 0  },
           {-rl * irl, -tb * itb,  nf * inf,  one}
+        }};
+      }
+
+      static Mat<TYPE, 4, 4> rotation_x(float angle) {
+        TYPE s = (TYPE) sinf(angle);
+        TYPE c = (TYPE) cosf(angle);
+        return {{
+          {one, 0,   0,   0  },
+          {0,   c,   s,   0  },
+          {0,  -s,   c,   0  },
+          {0,   0,   0,   one}
+        }};
+      }
+
+      static Mat<TYPE, 4, 4> rotation_y(float angle) {
+        TYPE s = (TYPE) sinf(angle);
+        TYPE c = (TYPE) cosf(angle);
+        return {{
+          {c,   0,  -s,   0  },
+          {0,   one, 0,   0  },
+          {s,   0,   c,   0  },
+          {0,   0,   0,   one}
+        }};
+      }
+
+      static Mat<TYPE, 4, 4> rotation_z(float angle) {
+        TYPE s = (TYPE) sinf(angle);
+        TYPE c = (TYPE) cosf(angle);
+        return {{
+          { c,   s,   0,   0  },
+          {-s,   c,   0,   0  },
+          { 0,   0,   one, 0  },
+          { 0,   0,   0,   one}
         }};
       }
 
