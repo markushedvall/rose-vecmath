@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class RoseVecmathConan(ConanFile):
     name = "rose-vecmath"
-    version = "0.0.0"
+    version = "0.1.0"
     license = "MIT OR Apache-2.0"
     url = "https://github.com/markushedvall/rose-vecmath"
     description = "A simple library for vector math with generic types"
