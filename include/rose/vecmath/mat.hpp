@@ -10,7 +10,7 @@
 namespace rose {
   namespace vecmath {
 
-    template<class TYPE, size_t COLS, size_t ROWS>
+    template<class TYPE, size_t ROWS, size_t COLS>
     struct Mat {
       static constexpr TYPE one = traits::One<TYPE>::one();
       Vec<TYPE, ROWS> mat[COLS];
@@ -31,8 +31,8 @@ namespace rose {
         return col(index);
       }
 
-      static Mat<TYPE, COLS, ROWS> identity() noexcept {
-        Mat<TYPE, COLS, ROWS> m;
+      static Mat<TYPE, ROWS, COLS> identity() noexcept {
+        Mat<TYPE, ROWS, COLS> m;
         for (int i = 0; i < COLS; ++i) {
           for (int j = 0; j < ROWS; ++j) {
               m[i][j] = i == j ? one : 0;
