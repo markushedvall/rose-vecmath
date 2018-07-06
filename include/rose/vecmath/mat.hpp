@@ -99,7 +99,7 @@ namespace rose {
         *this *= rot;
       }
 
-      static Mat<TYPE, 4, 4> identity() noexcept {
+      static constexpr Mat<TYPE, 4, 4> identity() noexcept {
         return {{
           {one, 0,   0,   0  },
           {0,   one, 0,   0  },
