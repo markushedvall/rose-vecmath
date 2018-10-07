@@ -194,6 +194,19 @@ TEST(Mat4x4, ortho) {
   expect_mat_eq(mat, expected);
 }
 
+TEST(Mat4x4, translation) {
+  auto mat = Mat4x4<float>::translation(2.0f, 3.0f, 4.0f);
+
+  Mat4x4<float> expected = {{
+    {1.0f, 0.0f, 0.0f, 0.0f},
+    {0.0f, 1.0f, 0.0f, 0.0f},
+    {0.0f, 0.0f, 1.0f, 0.0f},
+    {2.0f, 3.0f, 4.0f, 1.0f}
+  }};
+
+  expect_mat_eq(mat, expected);
+}
+
 TEST(Mat4x4, rotation_x) {
   auto mat = Mat4x4<float>::rotation_x(3.14f);
 

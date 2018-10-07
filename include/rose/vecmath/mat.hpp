@@ -124,6 +124,15 @@ namespace rose {
         }};
       }
 
+      static constexpr Mat<TYPE, 4, 4> translation(TYPE x, TYPE y, TYPE z) noexcept {
+        return {{
+          {one, 0,   0,   0  },
+          {0,   one, 0,   0  },
+          {0,   0,   one, 0  },
+          {x,   y,   z,   one}
+        }};
+      }
+
       static Mat<TYPE, 4, 4> rotation_x(float angle) {
         TYPE s = (TYPE) sinf(angle);
         TYPE c = (TYPE) cosf(angle);
