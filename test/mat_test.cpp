@@ -99,48 +99,6 @@ TEST(Mat4x4, mul) {
   expect_mat_eq(mat1, expected);
 }
 
-TEST(Mat4x4, rotate_x) {
-  auto mat = Mat4x4<float>::identity();
-  mat.rotate_x(3.14f);
-
-  Mat4x4<float> expected = {{
-    {1.0f, 0.0f, 0.0f, 0.0f},
-    {0.0f, -0.99999875f,   0.001592548f, 0.0f},
-    {0.0f, -0.001592548f, -0.99999875f,  0.0f},
-    {0.0f, 0.0f, 0.0f, 1.0f}
-  }};
-
-  expect_mat_eq(mat, expected);
-}
-
-TEST(Mat4x4, rotate_y) {
-  auto mat = Mat4x4<float>::identity();
-  mat.rotate_y(3.14f);
-
-  Mat4x4<float> expected = {{
-    {-0.99999875f, 0.0f, -0.001592548f, 0.0f},
-    {0.0f, 1.0f, 0.0f, 0.0f},
-    {0.001592548f, 0.0f, -0.99999875f,  0.0f},
-    {0.0f, 0.0f, 0.0f, 1.0f}
-  }};
-
-  expect_mat_eq(mat, expected);
-}
-
-TEST(Mat4x4, rotate_z) {
-  auto mat = Mat4x4<float>::identity();
-  mat.rotate_z(3.14f);
-
-  Mat4x4<float> expected = {{
-    {-0.99999875f,  0.001592548f, 0.0f, 0.0f},
-    {-0.001592548f, -0.99999875f, 0.0f, 0.0f},
-    {0.0f, 0.0f, 1.0f, 0.0f},
-    {0.0f, 0.0f, 0.0f, 1.0f}
-  }};
-
-  expect_mat_eq(mat, expected);
-}
-
 TEST(Mat, identity) {
   auto mat33 = Mat3x3<float>::identity();
   Mat3x3<float> expected33 = {{

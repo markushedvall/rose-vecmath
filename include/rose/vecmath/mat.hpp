@@ -84,21 +84,6 @@ namespace rose {
         return *this;
       }
 
-      void rotate_x(float angle) noexcept {
-        auto rot = rotation_x(angle);
-        *this *= rot;
-      }
-
-      void rotate_y(float angle) noexcept {
-        auto rot = rotation_y(angle);
-        *this *= rot;
-      }
-
-      void rotate_z(float angle) noexcept {
-        auto rot = rotation_z(angle);
-        *this *= rot;
-      }
-
       static constexpr Mat<TYPE, 4, 4> identity() noexcept {
         return {{
           {one, 0,   0,   0  },
